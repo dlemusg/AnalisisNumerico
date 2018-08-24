@@ -12,8 +12,55 @@ def constructorMaquina():
 def epsilonMaquina(TamañoMantisa):
   return 2**(TamañoMantisa*-1)
 
-def numeroMaquina(Decimal):
-  return True
+def cpila(bin):
+  pila = []
+  cont = 0
+  while(bin != 0):
+    pila.append(bin % 2)
+    bin = int(bin/10)
+    cont = cont + 1
+  return pila
+
+
+def numeroMaquina(conv, Dexp):
+  num = int(conv)
+  decimal = conv - float(num)
+  maquina = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  #signo de la mantisa
+  if conv >= 0:
+    maquina[0] = 1
+  #signo del exponente
+  if conv > 0 and conv < 1 :
+    maquina[1] = 0
+  else:
+    maquina[1] = 1
+  #parte entera de la mantisa
+  if num < 0:
+    num = num*-1
+  mant1 = "{0:b}".format(num)
+  mant2 = int(mant1)
+  pila = cpila(mant2)
+    
+  a = pila.pop() #se bota el bit mas significativo
+  cont2 = 2
+  tamp = len(pila)+2
+  while(cont2 < tamp and cont2 != Dexp):
+    maquina[cont2]=pila.pop()
+    cont2 = cont2 + 1
+
+  #exponente
+  exp = "{0:b}".format(len(mant1))
+  pila = cpila(int(exp))
+  
+  cont2 = Dexp
+  while(cont2 < 16):
+    maquina[cont2]=pila.pop()
+    cont2 = cont2 + 1
+  
+  print("El numero ", conv, " en numero maquina es: ", end = "")
+  for i in maquina:
+    print(i, end="")
+
 
 
 if __name__ == "__main__":
@@ -62,9 +109,11 @@ if __name__ == "__main__":
         elif(choice == 3):
           print(choice)
           #llamar funcion correspondiente
-          input()
+          input("")
         elif(choice == 4):
-          print(choice)
+          decimal = float(input("Ingrese un numero decimal para convertir a numero maquina: "))
+
+          numeroMaquina(decimal,Dexp)
           #llamar funcion correspondiente
           input()
         elif(choice == 5):
@@ -81,4 +130,3 @@ if __name__ == "__main__":
         print("ingrese un numero valido")
     except ValueError:
       print("ingrese un numero")
-    
