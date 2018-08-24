@@ -1,6 +1,3 @@
-def menu():
-  return True
-  
 def constructorMaquina():
   while(True):
     try:
@@ -12,6 +9,12 @@ def constructorMaquina():
     except ValueError:
       print("ingrese un numero")
     
+def epsilonMaquina(TamañoMantisa):
+  return 2**(TamañoMantisa*-1)
+
+def numeroMaquina(Decimal):
+  return True
+
 
 if __name__ == "__main__":
   print("Hola bienvenido a maquinaton 16 bits.\n")
@@ -54,8 +57,7 @@ if __name__ == "__main__":
           #llamar funcion correspondiente
           input()
         elif(choice == 2):
-          print(choice)
-          #llamar funcion correspondiente
+          print("El epsilon de esta maquina es", epsilonMaquina(mantisa))
           input()
         elif(choice == 3):
           print(choice)
