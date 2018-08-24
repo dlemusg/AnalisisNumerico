@@ -30,6 +30,39 @@ if __name__ == "__main__":
   print("Signo mantisa: 1 bit")
   print("Signo exponente: 1 bit")
   print("Mantisa:", mantisa+1," bits (el bit mas significativo es un bit implicito)")
-  print("Exponente: ", 14-(mantisa) ," bits")
+  print("Exponente: ", 14-(mantisa) ," bits\n")
 
-    
+  while(True):
+    print("Seleccione que hacer con maquinaton: ")
+    print("seleccione ingresando en la consola el numero deseado, ejemplo 1")
+    print("1. El numero positivo mas grande (overflow)(En decimal)")
+    print("2. El epsilon de la maquina (En decimal)")
+    print("3. El numero positivos mas pequeno(underflow)(En decimal)")
+    print("4. El numero maquina correspondiente a un numero decimal dado por el usuario")
+    print("5. El numero decimal correspondiente a un numero maquina dado por el usuario")
+    print("6. Cambiar maquina")
+    print("0. Salir")
+    choice = int(input())
+    if(choice>=0 and choice<= 6):
+      if(choice == 1):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 2):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 3):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 4):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 5):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 6):
+        print(choice)
+        #llamar funcion correspondiente
+      elif(choice == 0):
+        break
+    else:
+      print("ingrese un numero valido")
