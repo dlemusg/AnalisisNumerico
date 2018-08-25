@@ -110,17 +110,63 @@ def posGrande(man, exp):
 
 def posPeq(exp):
     decimal = 2**-1
-    print("La parte decimal fue igual a: " + str(decimal))
     j = 0
     exponente = 0
     while j < exp:
         exponente = exponente + 2**j
         j = j+1
     exponente = exponente*(-1)
-    print("El exponente es igual a: " + str(exponente))
     masPeque = decimal*(2**exponente)
     return str(masPeque)
 
+def verificacionMaquina():
+    numero = input()
+    while len(numero) > 16 or len(numero) < 16:
+        print("Numero incorrecto, no cumple con los bits recorridos ")
+        print("Ingrese un nuevo numero: ")
+        numero = input()
+    i = 0
+
+    while i < len(numero):
+        diferente = False
+        if (numero[i]!='1' and numero[i]!='0'):
+            print("ERROR, La cadena contiene un caracter diferetente a 1 o 0")
+            diferente = True
+            print("posicion: "+str(i)+" numero "+numero[i])
+            print("Ingrese un nuevo numero: ")
+            numero = input()
+
+        if(diferente==False):
+            i=i+1
+        else:
+                i=0 
+    return numero
+
+def masSencillo(mantisa):
+    print("Ingresa el numero maquina: \n")
+    numero = verificacionMaquina()
+    signos = numero[0:2]
+    manti = '1'+numero[2:(2+mantisa)]
+    exp = numero[(2+mantisa):16]
+    decimales = calcDecimales(manti)
+    #print("en decimal: "+str(decimales))
+    
+    expInt=int(exp,2)
+
+    if(signos[1]=='1'):
+        numero = decimales*2**expInt
+    else:
+        numero = decimales*2**(expInt*-1)
+    print("El numero decimal es: "+ str(numero))
+
+def calcDecimales(decimal):
+    i=0
+    acumulador = 0
+    while i<len(decimal):
+        if(decimal[i]=='1'):
+            acumulador = acumulador + 2**(-1*(i+1))
+        i=i+1
+    return acumulador
 
 if __name__ == "__main__":
   print("Hola bienvenido a maquinaton 16 bits.\n")
@@ -176,7 +222,12 @@ if __name__ == "__main__":
               print("ingrese un numero valido ej: 2.5 (use . y no ,)")
           input()
         elif(choice == 5):
-          #llamar funcion correspondiente
+          while(True):
+            try:
+              masSencillo(14-(mantisa))
+              break
+            except ValueError:
+              print("ingrese un numero valido ej: 2.5 (use . y no ,)")
           input()
         elif(choice == 6):
           #llamar funcion correspondiente
