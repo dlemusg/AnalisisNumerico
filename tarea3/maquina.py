@@ -1,3 +1,4 @@
+from decimal import Decimal  
 def constructorMaquina():
   while(True):
     try:
@@ -21,10 +22,9 @@ def cpila(bin):
     cont = cont + 1
   return pila
 
-
 def numeroMaquina(conv, Dexp):
   num = int(conv)
-  decimal = conv - float(num)
+  decimal = conv - num
   maquina = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   #signo de la mantisa
   if conv >= 0:
@@ -39,21 +39,33 @@ def numeroMaquina(conv, Dexp):
     num = num*-1
   mant1 = "{0:b}".format(num)
   mant2 = int(mant1)
+  print("mant2", mant2)
   pila = cpila(mant2)
-    
-  a = pila.pop() #se bota el bit mas significativo
+
+  if len(pila) > 0:  
+    a = pila.pop() #se bota el bit mas significativo
   cont2 = 2
   tamp = len(pila)+2
-  while(cont2 < tamp and cont2 != Dexp):
+  while(cont2 < tamp and cont2 != Dexp and len(pila)>0):
     maquina[cont2]=pila.pop()
+    cont2 = cont2 + 1
+
+  #decimal
+  while cont2 != Dexp and decimal != 0 :
+    decimal = decimal * 2
+    if(decimal >= 1):
+      maquina[cont2] = 1
+      decimal = decimal -1
+    else:
+      maquina[cont2] = 0
     cont2 = cont2 + 1
 
   #exponente
   exp = "{0:b}".format(len(mant1))
   pila = cpila(int(exp))
-  
   cont2 = Dexp
-  while(cont2 < 16):
+  while(cont2 < 16 and len(pila)>0):
+
     maquina[cont2]=pila.pop()
     cont2 = cont2 + 1
   
@@ -95,33 +107,31 @@ if __name__ == "__main__":
       print("3. El numero positivos mas pequeno(underflow)(En decimal)")
       print("4. El numero maquina correspondiente a un numero decimal dado por el usuario")
       print("5. El numero decimal correspondiente a un numero maquina dado por el usuario")
-      print("6. Cambiar maquina")
       print("0. Salir")
       choice = int(input())
-      if(choice>=0 and choice<= 6):
+      if(choice>=0 and choice<= 5):
         if(choice == 1):
-          print(choice)
           #llamar funcion correspondiente
           input()
         elif(choice == 2):
           print("El epsilon de esta maquina es", epsilonMaquina(mantisa))
           input()
         elif(choice == 3):
-          print(choice)
           #llamar funcion correspondiente
           input("")
         elif(choice == 4):
-          decimal = float(input("Ingrese un numero decimal para convertir a numero maquina: "))
-
-          numeroMaquina(decimal,Dexp)
-          #llamar funcion correspondiente
+          while(True):
+            try:
+              decimal = float(input("Ingrese un numero decimal para convertir a numero maquina: "))
+              numeroMaquina(decimal,Dexp)
+              break
+            except ValueError:
+              print("ingrese un numero valido ej: 2.5 (use . y no ,)")
           input()
         elif(choice == 5):
-          print(choice)
           #llamar funcion correspondiente
           input()
         elif(choice == 6):
-          print(choice)
           #llamar funcion correspondiente
           input()
         elif(choice == 0):
