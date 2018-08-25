@@ -24,6 +24,7 @@ def cpila(bin):
 
 def numeroMaquina(conv, Dexp):
   num = int(conv)
+  exp = 0
   decimal = conv - num
   maquina = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   #signo de la mantisa
@@ -39,7 +40,6 @@ def numeroMaquina(conv, Dexp):
     num = num*-1
   mant1 = "{0:b}".format(num)
   mant2 = int(mant1)
-  print("mant2", mant2)
   pila = cpila(mant2)
 
   if len(pila) > 0:  
@@ -51,23 +51,43 @@ def numeroMaquina(conv, Dexp):
     cont2 = cont2 + 1
 
   #decimal
+  
+  tem = decimal
+  encontrado = False
   while cont2 != Dexp and decimal != 0 :
-    decimal = decimal * 2
-    if(decimal >= 1):
-      maquina[cont2] = 1
-      decimal = decimal -1
+    if decimal == 1 :
+      decimal = 0
+    if(maquina[1]== 0 and encontrado == False):
+      decimal = decimal*2
+      if(decimal < 1):
+        exp = exp + 1
+      else:
+        encontrado = True
     else:
-      maquina[cont2] = 0
-    cont2 = cont2 + 1
+      decimal = decimal * 2
+      if(decimal >= 1):
+        maquina[cont2] = 1
+        decimal = decimal -1
+      else:
+        maquina[cont2] = 0
+      cont2 = cont2 + 1
+    
 
   #exponente
-  exp = "{0:b}".format(len(mant1))
+  if(maquina[1]==1):
+    exp = "{0:b}".format(len(mant1))
+  else:
+    exp = "{0:b}".format(exp)
   pila = cpila(int(exp))
   cont2 = Dexp
+  pil = (16 - Dexp) - len(pila) 
   while(cont2 < 16 and len(pila)>0):
-
-    maquina[cont2]=pila.pop()
-    cont2 = cont2 + 1
+    if(len(pila)<= pil):
+      cont2 = cont2 + 1
+      pil = pil -1
+    else:
+      maquina[cont2]=pila.pop()
+      cont2 = cont2 + 1
   
   print("El numero ", conv, " en numero maquina es: ", end = "")
   for i in maquina:
