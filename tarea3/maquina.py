@@ -94,6 +94,33 @@ def numeroMaquina(conv, Dexp):
     print(i, end="")
 
 
+def posGrande(man, exp):
+    i = 1
+    decimal = 0
+    while i <= man:
+        decimal = decimal + 2**(-1*i)
+        i = i+1
+    j = 0
+    exponente = 0
+    while j < exp:
+        exponente = exponente + 2**j
+        j = j+1
+    masGrande = decimal*(2**exponente)
+    return str(masGrande)
+
+def posPeq(exp):
+    decimal = 2**-1
+    print("La parte decimal fue igual a: " + str(decimal))
+    j = 0
+    exponente = 0
+    while j < exp:
+        exponente = exponente + 2**j
+        j = j+1
+    exponente = exponente*(-1)
+    print("El exponente es igual a: " + str(exponente))
+    masPeque = decimal*(2**exponente)
+    return str(masPeque)
+
 
 if __name__ == "__main__":
   print("Hola bienvenido a maquinaton 16 bits.\n")
@@ -131,13 +158,13 @@ if __name__ == "__main__":
       choice = int(input())
       if(choice>=0 and choice<= 5):
         if(choice == 1):
-          #llamar funcion correspondiente
+          print("El numero mas grande de esta maquina es", posGrande(mantisa+1, 14-(mantisa)))
           input()
         elif(choice == 2):
           print("El epsilon de esta maquina es", epsilonMaquina(mantisa))
           input()
         elif(choice == 3):
-          #llamar funcion correspondiente
+          print("El epsilon de esta maquina es", posPeq(14-(mantisa)))
           input("")
         elif(choice == 4):
           while(True):
