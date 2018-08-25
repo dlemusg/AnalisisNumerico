@@ -81,18 +81,14 @@ def numeroMaquina(conv, Dexp):
   pila = cpila(int(exp))
   cont2 = Dexp
   pil = (16 - Dexp) - len(pila) 
+  cont2 = cont2 + pil
   while(cont2 < 16 and len(pila)>0):
-    if(len(pila)<= pil):
-      cont2 = cont2 + 1
-      pil = pil -1
-    else:
-      maquina[cont2]=pila.pop()
-      cont2 = cont2 + 1
+    maquina[cont2]=pila.pop()
+    cont2 = cont2 + 1
   
   print("El numero ", conv, " en numero maquina es: ", end = "")
   for i in maquina:
     print(i, end="")
-
 
 def posGrande(man, exp):
     i = 1
@@ -210,7 +206,7 @@ if __name__ == "__main__":
           print("El epsilon de esta maquina es", epsilonMaquina(mantisa))
           input()
         elif(choice == 3):
-          print("El epsilon de esta maquina es", posPeq(14-(mantisa)))
+          print("El menor numero de esta maquina es", posPeq(14-(mantisa)))
           input("")
         elif(choice == 4):
           while(True):
