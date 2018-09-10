@@ -62,6 +62,7 @@ def numeroMaquina(conv, Dexp):
       if(decimal < 1):
         exp = exp + 1
       else:
+        decimal = decimal - 1
         encontrado = True
     else:
       decimal = decimal * 2
@@ -224,9 +225,6 @@ if __name__ == "__main__":
               break
             except ValueError:
               print("ingrese un numero valido ej: 2.5 (use . y no ,)")
-          input()
-        elif(choice == 6):
-          #llamar funcion correspondiente
           input()
         elif(choice == 0):
           break
