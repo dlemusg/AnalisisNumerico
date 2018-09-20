@@ -71,11 +71,13 @@ def metodoSecante(x0, x1, tolerancia, niteraciones):
 		if fx1 == 0:
 			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
 			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
+			print()
 			print (str(x1) + " es una raiz de f(x)")
 			fil.write(str(x1) + " es una raiz de f(x)")
 		elif (errorAbs<tolerancia):
 			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
 			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
+			print()
 			print(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
 			fil.write(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
 		elif minus == 0:
