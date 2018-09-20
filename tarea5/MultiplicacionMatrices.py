@@ -2,33 +2,50 @@
 def ppal():
 	print (
 	"""	
-	El siguiente programa se encarga de multiplicar dos matrices A y B.
-	Recordar que en la multiplicacion de matrices el orden si altera el producto, es decir, A*B es diferente que B*A
+El siguiente programa se encarga de multiplicar dos matrices A y B.
+Recordar que en la multiplicacion de matrices el orden si altera el producto, es decir, A*B es diferente que B*A
 	""")
 
 	#Creacion Matriz A
+	A = []
 	filA = int(input("\nIngrese el numero de filas de la matriz A: "))
 	colA = int(input("\nIngrese el numero de columnas de la matriz A: "))
-	A = []
-	for i in range (filA):
-		A.append([0] * (colA))
-		for j in range(colA):
-			print("Ingrese el numero de la fila ", i ," con columna " , j ," de la matriz A: ")
-			m = int(input())
-			A[i][j] = m	
+	i=0
+	while i<filA:
+		f = input("\nIngrese los numeros de la fila "+ str(i)+ " separados por un espacio: ").split()
+		if len(f) > colA:
+			print("La dimension de los datos es diferente a la establecida")
+		elif len(f) == colA:
+			for j in range(len(f)):
+				f[j] = int(f[j])
+			A.append(f)
+			i = i+1
+		else:
+			print("Faltan datos")
+
+	print()
+	print ("Matriz A: " , A)
 
 
 	#Creacion Matriz B
-	filB=colA
-	colB = int(input("\nIngrese el numero de columnas de la matriz B: "))
 	B = []
-	for i in range (filB):
-		B.append([0] * (colB))
-		for j in range(colB):
-			print("Ingrese el numero de la fila ", i ," con columna " , j ," de la matriz B: ")
-			m = int(input())
-			B[i][j] = m	
+	filB=colA
+	colB = int(input("\nIngrese el numero de columnas de la matriz B: "))	
+	i=0
+	while i<filB:
+		f = input("\nIngrese los numeros de la fila "+ str(i)+ " separados por un espacio: ").split()
+		if len(f) > colB:
+			print("La dimension de los datos es diferente a la establecida")
+		elif len(f) == colB:
+			for j in range(len(f)):
+				f[j] = int(f[j])
+			B.append(f)
+			i = i+1
+		else:
+			print("Faltan datos")
 
+	print()
+	print ("Matriz B: " , B)
 
 	function(A,B)
 pass
@@ -50,8 +67,7 @@ def function(A, B):
 			pass
 
 	print ()
-	print ("La multiplicacion entre A y B es: ")
-	print (N)
+	print ("La multiplicacion entre A y B es: ", N)
 pass
 
 ppal()
