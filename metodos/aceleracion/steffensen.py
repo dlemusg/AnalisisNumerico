@@ -45,7 +45,7 @@ def recolectarDatos():
 
     metodoPuntoFijo(xi, tolerancia, iteracion)
 
-def metodoPuntoFijo(xi, tolerancia, iteraciones):
+def metodoSteffense(xi, tolerancia, iteraciones):
     global f,g,tabla,fil
     x = Symbol('x')
     fx = f.subs(x,xi)
