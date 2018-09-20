@@ -10,7 +10,7 @@ tabla = []
 
 def recolectarDatos():
     global f,g,fil
-    fil = open('puntoFijo.txt', 'w')
+    fil = open('steffensen.txt', 'w')
     f = parse_expr(input("Ingrese f(x): "))
     g = parse_expr(input("Ingrese g(x): "))
     xi = float(input("Ingrese la aproximacion inicial: "))

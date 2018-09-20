@@ -1,9 +1,0 @@
----PUNTO FIJO---
-
----VARIABLES---
-f(x) = -x**3 + x
-g(x) = x**3
-Aproximacion inicial = 0.5
-Tolerancia = 5e-05
-Iteraciones = 100
-
