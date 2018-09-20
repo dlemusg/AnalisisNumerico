@@ -52,16 +52,20 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
 
 
     if fxi == 0:
-        print()
+        print(str(xi)+" es raiz\n")
+        out.write(str(xi)+" es raiz\n")
     
     elif fxs == 0:
-        print()
+        print(str(xs)+" es raiz\n")
+        out.write(str(xs)+" es raiz\n")
+
+    elif fxi * fxs > 0:
+        print("NO EXISTEN RAICES")
+        out.write("NO EXISTEN RAICES")
 
     elif fxi * fxs < 0: 
         xm = xi - (fxi*(xs-xi))/(fxs-fxi)
         fxm = f.subs(x, xm)
-        #print(str(cont)+"|"+str(xi)+"|"+str(fxi)+"|"+str(xs)+"|"+str(fxs)+"|"+str(xm)+"|"+str(fxm))
-        #out.write(str(cont)+"|"+str(xi)+"|"+str(fxi)+"|"+str(xs)+"|"+str(fxs)+"|"+str(xm)+"|"+str(fxm))
         tabla.append([str(cont),str(xi),str(fxi),str(xs),str(fxs),str(xm),str(fxm)])
         cont = 1
         errorAbs = tolerancia + 1
@@ -77,9 +81,6 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
             xm = xi - (fxi*(xs-xi))/(fxs-fxi)
             fxm = f.subs(x,xm)
             errorAbs = abs(xm - xaux)
-            #errorRel = errorAbs/xm
-            #print(str(cont) + "|" + str(xi) + "|" + str(fxi) + "|" + str(xs) + "|" + str(fxs) + "|" + str(xm) + "|" + str(fxm) + "|" + str(errorAbs) + "\n")
-            #out.write(str(cont) + "|" + str(xi) + "|" + str(fxi) + "|" + str(xs) + "|" + str(fxs) + "|" + str(xm) + "|" + str(fxm) + "|" + str(errorAbs) + "\n")
             tabla.append([str(cont), str(xi), str(fxi), str(xs), str(fxs), str(xm), str(fxm), str(errorAbs)])
             cont += 1    
 
@@ -87,8 +88,8 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
             print (str(xm) + " es raiz\n")
             out.write(str(xm) + " es raiz\n")
         elif errorAbs < tolerancia:
-            print(str(xm) + " se aproximacion a una raiz con una tolerancia = " + str(tolerancia)+"\n")
-            out.write(str(xm) + " se aproximacion a una raiz con una tolerancia = " + str(tolerancia)+"\n")
+            print(str(xm) + " se aproxima a una raiz con una tolerancia = " + str(tolerancia)+"\n")
+            out.write(str(xm) + " se aproxima a una raiz con una tolerancia = " + str(tolerancia)+"\n")
         else:
             print("Fracasó en "+str(iteracion)+" iteraciones"+"\n")
             out.write("Fracasó en "+str(iteracion)+" iteraciones"+"\n")
