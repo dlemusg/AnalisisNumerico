@@ -17,7 +17,7 @@ Recordar que en la multiplicacion de matrices el orden si altera el producto, es
 			print("La dimension de los datos es diferente a la establecida")
 		elif len(f) == colA:
 			for j in range(len(f)):
-				f[j] = int(f[j])
+				f[j] = float(f[j])
 			A.append(f)
 			i = i+1
 		else:
@@ -38,7 +38,7 @@ Recordar que en la multiplicacion de matrices el orden si altera el producto, es
 			print("La dimension de los datos es diferente a la establecida")
 		elif len(f) == colB:
 			for j in range(len(f)):
-				f[j] = int(f[j])
+				f[j] = float(f[j])
 			B.append(f)
 			i = i+1
 		else:
