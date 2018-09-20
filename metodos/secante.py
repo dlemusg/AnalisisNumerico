@@ -1,17 +1,20 @@
 from __future__ import division
 from sympy import *
 from sympy.parsing.sympy_parser import parse_expr
+from tabulate import tabulate
 
 f = Function('fx')
+tabla = []
 
 def recolectarDatos():
-    global f
+    global f, fil
+    fil = open('secante.txt', 'w')
     f = parse_expr(input("Ingrese la función f(x) a ser evaluada: "))
-    x0 = input("Ingrese el valor inicial x0: ")
-    x1 = input("Ingrese el segundo valor x1: ")
+    x0 = float(input("Ingrese el valor inicial x0: "))
+    x1 = float(input("Ingrese el segundo valor x1: "))
     tolerancia = 0;
     while (tolerancia <= 0):
-    	tolerancia = int(input("Ingrese la tolerancia: "))
+    	tolerancia = float(input("Ingrese la tolerancia: "))
     	if tolerancia <= 0:
     		print("La tolerancia debe ser mayor que 0")
     	pass
@@ -21,21 +24,64 @@ def recolectarDatos():
     	niteraciones = int(input("Ingrese el numero maximo de iteraciones: " ))
     	if niteraciones <= 0:
     		print("El numero de iteraciones debe ser mayor que 0")
-    	pass
+    
 
-    metodoSecante(x0)
+    fil.write("---SECANTE---\n\n")
+    print("---VERIFICACION---")
+    fil.write("---VARIABLES---\n")
+    print("f(x) = ",f)
+    fil.write("f(x) = "+str(f)+"\n")
+    print("intervalos [x0, x1] = " , "[ " + str(x0)+ ", ", str(x1),"]")
+    fil.write("intervalos [x0, x1] = " + "[" + str(x0)+ ", "+ str(x1)+ "]"+"\n")
+    print("Tolerancia = ",tolerancia)
+    fil.write("Tolerancia = "+str(tolerancia)+"\n")
+    print("Iteraciones = ",niteraciones)
+    fil.write("Iteraciones = "+str(niteraciones)+"\n")
+    input("")
+    fil.write("\n")
+
+    metodoSecante(x0, x1, tolerancia, niteraciones)
 
 
-def metodoSecante(x0):
+def metodoSecante(x0, x1, tolerancia, niteraciones):
 	x = Symbol('x')
 	fx0 = f.subs(x, x0)
-	print(fx0)
+	if fx0==0:
+		print (str(x0) + " es una raiz de f(x)")
+		pass
+	else:
+		fx1 = f.subs(x, x1)
+		contador = 0
+		errorAbs = tolerancia + 1
+		minus = fx1 - fx0
+		tabla.append([str(contador),str(xi),str(fx0),str(errorAbs)])
+		while (errorAbs>tolerancia and fx1 != 0 and minus != 0 and contador < niteraciones):
+			x2 = x1 - ((fx1 * (x1 - x0))/minus)
+			errorAbs = abs(x2 - xi)
+			x0 = x1
+			fx0 = fx1
+			x1 = x2
+			fx1 = f.subs(x, x1)
+			minus =  fx1 - fx0
+			contador = contador + 1
+
+			tabla.append([str(contador),str(xi),str(fx0),str(errorAbs)])
+		
+		if fx1 == 0:
+			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        	print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        	print (str(x1) + " es una raiz de f(x)")
+        elif errorAbs<tolerancia:
+        	fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        	print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        	print(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
+        elif minus == 0:
+        	print("En la funcion f(x) hay una posible raiz multiple")
+        else:
+        	print("FALLO, exedio el numero  maximo de iteraciones")
+
+    	fil.close()
 
 
-
-
-	#str_expr = "x**2 + 3*x - 1/2"
-	#expr = sympify(str_expr)
-	pass
 
 recolectarDatos()
