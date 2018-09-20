@@ -39,7 +39,7 @@ def recolectarDatos():
     fil.write("Tolerancia = "+str(tolerancia)+"\n")
     print("Iteraciones = ",iteracion)
     fil.write("Iteraciones = "+str(iteracion)+"\n")
-    input("")
+    input("\nPresione enter...")
     fil.write("\n")
 
     metodoPuntoFijo(xi, tolerancia, iteracion)
