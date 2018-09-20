@@ -93,8 +93,8 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
             print("Fracasó en "+str(iteracion)+" iteraciones"+"\n")
             out.write("Fracasó en "+str(iteracion)+" iteraciones"+"\n")
     else:
-        print("fracasó "+str(iteracion)+" iteraciones"+"\n")
-        out.write("fracasó "+str(iteracion)+" iteraciones"+"\n")
+        print("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
+        out.write("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
 
     print(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E']))
     out.write("------------------------------------------------------\n")

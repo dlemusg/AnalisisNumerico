@@ -52,8 +52,46 @@ def raicesMutiples(x0, tolerancia, iteracion):
     contador = 0
     errorAbs = tolerancia + 1
     denomi = dfx**2-(fx*d2fx)
+    
 
-    print( str(contador) + "|" + str(x0) + "|" + str(fx) + "|" + str(dfx) + "|" + str(d2fx) + "\n")
+    #print(str(contador) + "|" + str(x0) + "|" + str(fx) + "|" + str(dfx) + "|" + str(d2fx))
+    tabla.append([str(contador), str(x0), str(fx), str(dfx), str(d2fx)])
+
+    while fx != 0 and errorAbs > tolerancia and denomi != 0 and contador < iteracion:
+        x1 = x0 - fx*dfx/denomi
+        fx = f.subs(x, x1)
+        dfx = df.subs(x, x1)
+        d2fx = d2f.subs(x, x1)
+        errorAbs = abs(x1-x0)
+        x0 = x1
+        contador +=1
+        denomi = dfx**2-(fx*d2fx)
+
+        #print(str(contador) + "|" + str(x0) + "|" + str(fx) + "|" + str(dfx) + "|" + str(d2fx) + "|" + str(errorAbs))
+        tabla.append([str(contador), str(x0), str(fx), str(dfx), str(d2fx), str(errorAbs)])
+
+    if fx == 0:
+        print(str(x0) + " raiz")
+        out.write(str(x0) + " raiz")
+    elif errorAbs < tolerancia:
+        print(str(x0) + " se aproxima a una raiz de la función, con una tolerancia de: " + str(tolerancia))
+        out.write(str(x0) + " se aproxima a una raiz de la función, con una tolerancia de: " + str(tolerancia))
+    elif dfx == 0:
+        print(str(x0) + " Es una raiz multiple simple")
+        out.write(str(x0) + " Es una raiz multiple simple")
+    elif d2fx == 0:
+        print(str(x0) + " Es una raiz multiple de multiplicidad 2")
+        out.write(str(x0) + " Es una raiz multiple de multiplicidad 2")
+    else:
+        print("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
+        out.write("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
+
+    print(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E']))
+    out.write("------------------------------------------------------\n")
+    out.write(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E'],floatfmt=".15f"))
+
+
+    
 
 ingresoDatos()
 
