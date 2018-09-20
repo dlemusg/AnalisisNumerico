@@ -17,7 +17,7 @@ def recolectarDatos():
     	tolerancia = float(input("Ingrese la tolerancia: "))
     	if tolerancia <= 0:
     		print("La tolerancia debe ser mayor que 0")
-    	pass
+    	
      
     niteraciones = 0
     while (niteraciones<=0):
@@ -26,6 +26,8 @@ def recolectarDatos():
     		print("El numero de iteraciones debe ser mayor que 0")
     
 
+    print("")
+    print("")
     fil.write("---SECANTE---\n\n")
     print("---VERIFICACION---")
     fil.write("---VARIABLES---\n")
@@ -37,11 +39,10 @@ def recolectarDatos():
     fil.write("Tolerancia = "+str(tolerancia)+"\n")
     print("Iteraciones = ",niteraciones)
     fil.write("Iteraciones = "+str(niteraciones)+"\n")
-    input("")
+    print("")
     fil.write("\n")
 
     metodoSecante(x0, x1, tolerancia, niteraciones)
-
 
 def metodoSecante(x0, x1, tolerancia, niteraciones):
 	x = Symbol('x')
@@ -51,13 +52,13 @@ def metodoSecante(x0, x1, tolerancia, niteraciones):
 		pass
 	else:
 		fx1 = f.subs(x, x1)
-		contador = 0
+		contador = -1
 		errorAbs = tolerancia + 1
 		minus = fx1 - fx0
-		tabla.append([str(contador),str(xi),str(fx0),str(errorAbs)])
+		tabla.append([str(contador),str(x0),str(fx0),str(errorAbs)])
 		while (errorAbs>tolerancia and fx1 != 0 and minus != 0 and contador < niteraciones):
 			x2 = x1 - ((fx1 * (x1 - x0))/minus)
-			errorAbs = abs(x2 - xi)
+			errorAbs = abs(x2 - x1)
 			x0 = x1
 			fx0 = fx1
 			x1 = x2
@@ -65,23 +66,21 @@ def metodoSecante(x0, x1, tolerancia, niteraciones):
 			minus =  fx1 - fx0
 			contador = contador + 1
 
-			tabla.append([str(contador),str(xi),str(fx0),str(errorAbs)])
+			tabla.append([str(contador),str(x0),str(fx0),str(errorAbs)])
 		
 		if fx1 == 0:
 			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        	print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        	print (str(x1) + " es una raiz de f(x)")
-        elif errorAbs<tolerancia:
-        	fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        	print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        	print(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
-        elif minus == 0:
-        	print("En la funcion f(x) hay una posible raiz multiple")
-        else:
-        	print("FALLO, exedio el numero  maximo de iteraciones")
-
-    	fil.close()
-
+			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+			print (str(x1) + " es una raiz de f(x)")
+		elif (errorAbs<tolerancia):
+			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+			print(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
+		elif minus == 0:
+			print("En la funcion f(x) hay una posible raiz multiple")
+		else:
+			print("FALLO, exedio el numero  maximo de iteraciones")
+		fil.close()
 
 
 recolectarDatos()
