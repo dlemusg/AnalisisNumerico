@@ -43,7 +43,7 @@ def recolectarDatos():
     input("")
     fil.write("\n")
 
-    metodoPuntoFijo(xi, tolerancia, iteracion)
+    metodoSteffense(xi, tolerancia, iteracion)
 
 def metodoSteffense(xi, tolerancia, iteraciones):
     global f,g,tabla,fil
