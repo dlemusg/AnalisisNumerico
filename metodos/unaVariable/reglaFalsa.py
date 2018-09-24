@@ -97,9 +97,9 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
         print("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
         out.write("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
 
-    print(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".16f"))
+    print(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".17f"))
     out.write("------------------------------------------------------\n")
-    out.write(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".16f"))
+    out.write(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".17f"))
     
 
 ingresoDatos()

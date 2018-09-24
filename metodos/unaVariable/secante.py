@@ -53,9 +53,9 @@ def metodoSecante(x0, x1, tolerancia, niteraciones):
 	else:
 		fx1 = f.subs(x, x1)
 		contador = 0
-		tabla.append([str(contador),str(x0),str(fx0),str("")])
+		tabla.append([str(contador),str(x0),str(fx0)])
 		contador = 1
-		tabla.append([str(contador),str(x1),str(fx1),str("")])
+		tabla.append([str(contador),str(x1),str(fx1)])
 		minus = fx1 - fx0
 		errorAbs = tolerancia + 1
 		while (errorAbs > tolerancia and fx1 != 0 and minus != 0 and contador < niteraciones):
@@ -73,14 +73,14 @@ def metodoSecante(x0, x1, tolerancia, niteraciones):
 
 		
 		if fx1 == 0:
-			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
-			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
+			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
+			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
 			print()
 			print (str(x1) + " es una raiz de f(x)")
 			fil.write(str(x1) + " es una raiz de f(x)")
 		elif (errorAbs<tolerancia):
-			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
-			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],floatfmt=".15f"))
+			fil.write(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
+			print(tabulate(tabla, headers=['i', '(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
 			print()
 			print(str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
 			fil.write('\n'+str(x1) + " se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))

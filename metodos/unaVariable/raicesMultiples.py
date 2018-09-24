@@ -83,9 +83,9 @@ def raicesMutiples(x0, tolerancia, iteracion):
         print("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
         out.write("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
 
-    print(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E'],floatfmt=".15f"))
+    print(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E'],tablefmt='grid',floatfmt=".17f"))
     out.write("------------------------------------------------------\n")
-    out.write(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E'],floatfmt=".15f"))
+    out.write(tabulate(tabla, headers= ['n', 'xn', 'f(n)',"f'(n)","f''(n)", 'E'],tablefmt='grid',floatfmt=".17f"))
 
 ingresoDatos()
 

@@ -42,13 +42,13 @@ def busquedasIncrementales(x0, delta, niteraciones):
             v_array_imprimir.append([cont, x1, fx1])
 
         if fx1 == 0:
-            print(tabulate(v_array_imprimir, headers=['i', 'xm', 'f(xm)'],tablefmt='grid',floatfmt=".15f"))
+            print(tabulate(v_array_imprimir, headers=['i', 'xm', 'f(xm)'],tablefmt='grid',floatfmt=".17f"))
             print (str(x1) + " es una raiz")
-            file.write(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'], tablefmt='grid'))
+            file.write(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'], tablefmt='grid',floatfmt=".17f"))
         elif fx0 * fx1 < 0:
-            print(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'],tablefmt='grid',floatfmt=".15f"))
+            print(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'],tablefmt='grid',floatfmt=".17f"))
             print("Hay una raiz entre: " + str(x0) + " and " + str(x1))
-            file.write(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'], tablefmt='grid'))
+            file.write(tabulate(v_array_imprimir, headers=['Iteraciones', 'xm', 'f(xm)'], tablefmt='grid',floatfmt=".17f"))
         else:
             print("Excedio el numero de iteraciones posible")
     file.close()

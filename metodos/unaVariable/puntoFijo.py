@@ -50,7 +50,7 @@ def metodoPuntoFijo(xi, tolerancia, iteraciones):
     fx = f.subs(x,xi)
     cont = 0
     errorAbs = tolerancia + 1
-    tabla.append([str(cont),str(xi),str(fx),str(errorAbs)])
+    tabla.append([str(cont),str(xi),str(fx)])
     while (fx != 0 and errorAbs > tolerancia and cont < iteraciones):
         xn = g.subs(x,xi)
         fx = f.subs(x,xn)
@@ -60,12 +60,12 @@ def metodoPuntoFijo(xi, tolerancia, iteraciones):
         tabla.append([str(cont),str(xi),str(fx),str(errorAbs)])
 
     if fx == 0:
-        fil.write(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        print(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        fil.write(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
+        print(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
         print (str(xi) + " es una raiz de f(x)")
     elif errorAbs < tolerancia:
-        fil.write(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
-        print(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='fancy_grid',floatfmt=".15f"))
+        fil.write(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
+        print(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
         print(str(xi) + "se aproxima a una raiz de f(x), con una tolerancia de: " + str(tolerancia))
     else:
         print("FALLO, exedio el numero  maximo de iteraciones")
