@@ -1,0 +1,9 @@
+---PUNTO FIJO---
+
+---VARIABLES---
+f(x) = x**2 + x
+g(x) = x**2 + x
+Aproximacion inicial = 2.0
+Tolerancia = 0.0005
+Iteraciones = 10
+
