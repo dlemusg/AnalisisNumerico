@@ -48,7 +48,7 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
     x = Symbol('x')
     fxi = f.subs(x, xi)
     fxs = f.subs(x, xs)
-    cont = 0
+    cont = 1
 
 
     if fxi == 0:
@@ -67,7 +67,7 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
         xm = xi - (fxi*(xs-xi))/(fxs-fxi)
         fxm = f.subs(x, xm)
         tabla.append([str(cont),str(xi),str(fxi),str(xs),str(fxs),str(xm),str(fxm)])
-        cont = 1
+        cont += 1
         errorAbs = tolerancia + 1
         while fxm != 0 and errorAbs > tolerancia and cont < iteracion:
             if fxi * fxm < 0:
@@ -97,9 +97,9 @@ def reglaFalsa(xi, xs, tolerancia, iteracion):
         print("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
         out.write("NO SE PUDO REALIZAR LA SOLICITUD"+"\n")
 
-    print(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],floatfmt=".15f"))
+    print(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".16f"))
     out.write("------------------------------------------------------\n")
-    out.write(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],floatfmt=".15f"))
+    out.write(tabulate(tabla, headers= ['n', 'xi', 'fxi','xs','fxs','xm','fxm', 'E'],tablefmt='grid',floatfmt=".16f"))
     
 
 ingresoDatos()
