@@ -78,20 +78,6 @@ def metodoBiseccion(xi,xs,tolerancia, niteraciones):
             file.write(tabulate(v_array_imprimir, headers=['Iteraciones', 'xi', 'f(xi)', 'xs', 'f(xs)', 'xm', 'fxm','EA', 'ER'], tablefmt='grid'))
         else:
             print("Excedio el numero de iteraciones posible")
-        for i in range(0,len(v_array_aitken)):
-            v_array_aitken[i] = np.pad(v_array_aitken[i], (0, len(v_array_aitken)-1), 'constant')
-        n = len(v_array_aitken)
-        #i j donde es
-        #i j-1 es fx1
-        #i-1 j-1 es fx0
-        #i 0 es x1
-        #i-j+1 es x0
-        for j in range(2,n+1):
-            for i in range(j-1,n):
-                v_array_aitken[i][j] = (xm - v_array_aitken[i-j+1][0])*v_array_aitken[i][j-1] - (xm - v_array_aitken[i][0])*v_array_aitken[i-1][j-1]/(v_array_aitken[i][0] - v_array_aitken[i-j+1][0])
-        print("Algoritmo de aitken")
-        print(tabulate(v_array_aitken, tablefmt='grid'))
-        file.write("Algoritmo de aitken")
-        file.write(tabulate(v_array_aitken, tablefmt='grid'))
+
         file.close()
 recolectarDatos()
