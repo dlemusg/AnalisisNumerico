@@ -50,14 +50,14 @@ def metodoPuntoFijo(xi, tolerancia, iteraciones):
     fx = f.subs(x,xi)
     cont = 0
     errorAbs = tolerancia + 1
-    tabla.append([str(cont),str(xi),str(fx)])
+    tabla.append([cont,xi,fx])
     while (fx != 0 and errorAbs > tolerancia and cont < iteraciones):
         xn = g.subs(x,xi)
         fx = f.subs(x,xn)
         errorAbs = abs(xn - xi) 
         xi = xn
         cont += 1
-        tabla.append([str(cont),str(xi),str(fx),str(errorAbs)])
+        tabla.append([cont,xi,fx,errorAbs])
 
     if fx == 0:
         fil.write(tabulate(tabla, headers=['i', 'g(xn)','f(xn)','Error Absoluto'],tablefmt='grid',floatfmt=".17f"))
