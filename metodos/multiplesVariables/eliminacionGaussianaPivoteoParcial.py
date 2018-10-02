@@ -19,18 +19,16 @@ def eliminacionGaussianaPivoteoParcial(A,n, file):
     file.write("\n    MATRIZ ORIGINAL A \n")
     print(tabulate(A, tablefmt='fancy_grid'))
     file.write(tabulate(A, tablefmt='grid'))
-    #imprimirMatriz(A,n)
     for k in range(1,n):
         print("\nANTES DEL PIVOTEO PARCIAL\n")
         file.write("\nANTES DEL PIVOTEO PARCIAL\n")
-        #imprimirMatriz(A,n)
-        print(tabulate(A, tablefmt='fancy_grid'))
-        file.write(tabulate(A, tablefmt='grid'))
+        print(tabulate(A, tablefmt='fancy_grid',floatfmt=".14f"))
+        file.write(tabulate(A, tablefmt='grid',floatfmt=".14f"))
         A = pivoteoParcial(A,n,k-1)
         print("\nDESPUES DEL PIVOTEO PARCIAL\n")
         file.write("\nDESPUES DEL PIVOTEO PARCIAL\n")
-        print(tabulate(A, tablefmt='fancy_grid'))
-        file.write(tabulate(A, tablefmt='grid'))
+        print(tabulate(A, tablefmt='fancy_grid',floatfmt=".14f"))
+        file.write(tabulate(A, tablefmt='grid',floatfmt=".14f"))
         print("\nETAPA " + str(k) + "\nObjetivo: Poner ceros bajo el elemento A" + str(k) + str(k) + " = " + str(A[k-1][k-1]) + "\n")
         file.write("\nETAPA " + str(k) + "\nObjetivo: Poner ceros bajo el elemento A" + str(k) + str(k) + " = " + str(A[k-1][k-1]) + "\n")
         for i in range(k, n):
@@ -43,8 +41,8 @@ def eliminacionGaussianaPivoteoParcial(A,n, file):
             #imprimirMatriz(A,n)
     print("\n   MATRIZ TRIANGULAR SUPERIOR\n")
     file.write("\n   MATRIZ TRIANGULAR SUPERIOR\n")
-    print(tabulate(A, tablefmt='fancy_grid'))
-    file.write(tabulate(A, tablefmt='grid'))
+    print(tabulate(A, tablefmt='fancy_grid',floatfmt=".14f"))
+    file.write(tabulate(A, tablefmt='grid',floatfmt=".14f"))
     sustitucionRegresiva(A,n, file)
 
 def pivoteoParcial(A,n,k):
