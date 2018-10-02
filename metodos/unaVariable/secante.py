@@ -12,7 +12,7 @@ def recolectarDatos():
     f = parse_expr(input("Ingrese la función f(x) a ser evaluada: "))
     x0 = float(input("Ingrese el valor inicial x0: "))
     x1 = float(input("Ingrese el segundo valor x1: "))
-    tolerancia = 0;
+    tolerancia = 0
     while (tolerancia <= 0):
     	tolerancia = float(input("Ingrese la tolerancia: "))
     	if tolerancia <= 0:
