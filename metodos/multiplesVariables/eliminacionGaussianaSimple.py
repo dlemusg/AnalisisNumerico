@@ -29,12 +29,12 @@ def eliminacionGaussianaSimple(A,n,file):
             for j in range(k,n+2):
                 A[i][j-1] = A[i][j-1] - multiplicador*A[k-1][j-1]
 
-            print(tabulate(A, tablefmt='fancy_grid'))
-            file.write(tabulate(A, tablefmt='grid'))
+            print(tabulate(A, tablefmt='fancy_grid',floatfmt=".14f"))
+            file.write(tabulate(A, tablefmt='grid',floatfmt=".14f"))
     print("\n   MATRIZ TRIANGULAR SUPERIOR\n")
     file.write("\n   MATRIZ TRIANGULAR SUPERIOR\n")
-    print(tabulate(A, tablefmt='fancy_grid'))
-    file.write(tabulate(A, tablefmt='grid'))
+    print(tabulate(A, tablefmt='fancy_grid',floatfmt=".14f"))
+    file.write(tabulate(A, tablefmt='grid',floatfmt=".14f"))
     sustitucionRegresiva(A,n,file)
 
 def sustitucionRegresiva(A,n,file):
