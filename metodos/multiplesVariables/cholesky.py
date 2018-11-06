@@ -126,7 +126,7 @@ def inputYverificacion():
         B[j] = float(val[j])
     print(B)
 
-    for i in range(m):
+    for i in range(n):
         L.append([])
         U.append([])
         for j in range(n):
