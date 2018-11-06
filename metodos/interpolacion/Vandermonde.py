@@ -1,5 +1,7 @@
 #Puntos = [(x1,y1),(x2,y2)]
 import numpy as np
+from tabulate import tabulate
+
 def Vandermonde(puntos):
     A = []
     b = []
@@ -25,5 +27,7 @@ puntos = [(1,0.5949),
         (10,0.5079)]
 
 A,b = Vandermonde(puntos)
-print(np.linalg(A,b))
-print(Vandermonde(puntos))
+
+
+print(np.linalg.solve(A,b))
+print(tabulate(A, tablefmt='grid',floatfmt=".14f"))
